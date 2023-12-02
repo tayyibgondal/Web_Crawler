@@ -1,23 +1,38 @@
 <?php
-// Simulate a search query and return dummy data
-$searchQuery = $_POST['data']; // Assuming 'data' is the name of the input field
+include('db/db_connector.php');
 
-// Perform a search or generate dummy data based on the received query
-if ($searchQuery) {
-    // Perform a search operation using $searchQuery (e.g., querying a database)
-    // Replace this section with your actual search logic
+$userInput = $_POST['data'];
+$searchResults = array();
 
-    // For demonstration purposes, return dummy search results
-    $searchResults = array(
-        array('title' => 'Result 1', 'description' => 'Description 1'),
-        array('title' => 'Result 2', 'description' => 'Description 2'),
-        array('title' => 'Result 3', 'description' => 'Description 3')
-    );
+function sanitizeUserInput($data)
+{
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
+
+if ($userInput) {
+    // Sanitize the query
+    $userInputSanitized = sanitizeUserInput($userInput);
+
+    // Sql query
+    $searchQuery = "SELECT url FROM urls WHERE url LIKE '%$userInputSanitized%'";
+    $resultsOfQuery = mysqli_query($conn, $searchQuery);
+
+    if (mysqli_num_rows($resultsOfQuery) > 0) {
+        while ($row = mysqli_fetch_assoc($resultsOfQuery)) {
+            $searchResults[] = $row['url'];
+        }
+    } else {
+        $searchResults[] = "No search results found!";
+    }
 
     // Convert the search results to JSON and send it as the response
     header('Content-Type: application/json');
     echo json_encode($searchResults);
 } else {
-    // If no search query is provided, return an error message or handle as needed
-    echo "No search query provided.";
+    $searchResults[] = "Can't query emtpy input!";
+    header('Content-Type: application/json');
+    echo json_encode($searchResults);
 }
