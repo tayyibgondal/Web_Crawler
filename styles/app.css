@@ -1,8 +1,68 @@
 body {
-    background-color: black;
-    color: aliceblue;
+    background-color: #160101;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    width: 50%; /* Set a fixed width for the container */
+    padding: 20px;
+    background-color: #333;
+    border-radius: 5px;
+    text-align: center;
+}
+
+input[type="text"],
+button {
+    padding: 10px;
+    margin: 5px;
+    border: none;
+    border-radius: 3px;
+}
+
+input[type="text"] {
+    width: 300px;
+}
+
+button {
+    cursor: pointer;
+    background-color: #444;
+    color: #fff;
+}
+
+button:hover {
+    background-color: #555;
 }
 
 .hidden {
     display: none;
+}
+
+.search-results {
+    margin-top: 20px;
+    text-align: left;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+ul li {
+    margin-bottom: 5px;
+}
+
+/* Additional style for visible elements */
+.visible {
+    display: block;
+    margin-top: 10px; /* Adjust as needed */
+    padding: 10px;
+    background-color: #444;
+    color: #fff;
+    border-radius: 3px;
 }
