@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Web Spider</title>
+    <link rel="stylesheet" href="styles/app.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="website-crawled-message hidden">
+        <p>
+          The website has been crawled by our engine. You can now make a SEARCH
+          on our updated database!
+        </p>
+      </div>
+      <form id="myForm" action="" method="post">
+        <input type="text" name="data" placeholder="Enter here" />
+        <button type="submit" name="submitBtn" value="search">Search</button>
+        <button type="submit" name="submitBtn" value="crawl">Crawl</button>
+      </form>
+      <div class="search-results hidden">
+        <ul>
+          <li>https://github.com/tayyibgondal</li>
+          <li>https://github.com/aaminew01</li>
+          <li>https://github.com/mfarooq19</li>
+        </ul>
+      </div>
+    </div>
+    <script src="scripts/crawl_or_search_selector.js"></script>
+  </body>
+</html>
