@@ -8,7 +8,7 @@ $htmls = array(); // Array to store HTML contents with titles
 function saveToDatabase($url, $htmlContent)
 {
     include('db/db_connector.php');
-    echo "$url <br>";
+    // echo "$url <br>";
 
     // Check if the URL already exists in the database
     $stmt = $conn->prepare("SELECT * FROM crawled_urls WHERE url = ?");
@@ -42,7 +42,7 @@ function saveToDatabase($url, $htmlContent)
         // Close connection
         $stmt->close();
     } else {
-        echo "URL already exists in the database: $url<br>";
+        // echo "URL already exists in the database: $url<br>";
     }
 
     $conn->close();

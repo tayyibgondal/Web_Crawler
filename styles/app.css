@@ -3,18 +3,22 @@ body {
     color: #fff;
     font-family: Arial, sans-serif;
     display: flex;
-    justify-content: center;
+    flex-direction: column; /* Adjusting flex direction */
     align-items: center;
     height: 100vh;
     margin: 0;
+    overflow: hidden;
 }
 
 .container {
-    width: 50%; /* Set a fixed width for the container */
+    margin-top: 10%;
+    padding-bottom: 3%;
+    width: 80%;
     padding: 20px;
-    background-color: #333;
+    background-color: #2d2d2d;
     border-radius: 5px;
     text-align: center;
+    max-height: 80vh; /* Limit the height to allow scrolling */
 }
 
 input[type="text"],
@@ -26,7 +30,7 @@ button {
 }
 
 input[type="text"] {
-    width: 300px;
+    width: 70%;
 }
 
 button {
@@ -46,23 +50,41 @@ button:hover {
 .search-results {
     margin-top: 20px;
     text-align: left;
+    max-height: 60vh; /* Limit the height of search results */
+    overflow: auto; /* Add scrolling to search results */
 }
 
 ul {
     list-style: none;
     padding: 0;
+    margin: 0;
 }
 
 ul li {
+    margin-bottom: 10px;
+}
+
+.search-result {
+    background-color: #555;
+    padding: 10px;
+    border-radius: 5px;
+    color: #fff; /* Adjusted text color */
+}
+
+.search-result h3 {
+    margin-top: 0;
+}
+
+.search-result p {
     margin-bottom: 5px;
 }
 
-/* Additional style for visible elements */
-.visible {
-    display: block;
-    margin-top: 10px; /* Adjust as needed */
-    padding: 10px;
-    background-color: #444;
-    color: #fff;
-    border-radius: 3px;
+.search-result a {
+    color: #9bf; /* Changed link color */
+    text-decoration: none;
+}
+
+.search-result a:hover {
+    text-decoration: underline;
+    color: #7ff; /* Adjusted link hover color */
 }

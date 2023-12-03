@@ -2,6 +2,7 @@
 include('db/db_connector.php');
 
 $userInput = $_POST['data'];
+// $userInput = $_GET['data'];
 $searchResults = array();
 
 function sanitizeUserInput($data)
@@ -13,26 +14,28 @@ function sanitizeUserInput($data)
 }
 
 if ($userInput) {
-    // Sanitize the query
     $userInputSanitized = sanitizeUserInput($userInput);
 
-    // Sql query
-    $searchQuery = "SELECT url FROM urls WHERE url LIKE '%$userInputSanitized%'";
+    $searchQuery = "SELECT url, title, meta_description FROM crawled_urls WHERE title LIKE '%$userInputSanitized%' OR meta_description LIKE '%$userInputSanitized%' OR html_content LIKE '%$userInputSanitized%'";
     $resultsOfQuery = mysqli_query($conn, $searchQuery);
 
     if (mysqli_num_rows($resultsOfQuery) > 0) {
         while ($row = mysqli_fetch_assoc($resultsOfQuery)) {
-            $searchResults[] = $row['url'];
+            $searchResults[] = array(
+                'url' => $row['url'],
+                'title' => $row['title'],
+                'meta_description' => $row['meta_description']
+            );
         }
     } else {
-        $searchResults[] = "No search results found!";
+        $searchResults[] = array('url' => '', 'title' => 'No search results found!', 'meta_description' => '');
     }
 
-    // Convert the search results to JSON and send it as the response
+    // Send the JSON response with appropriate headers
     header('Content-Type: application/json');
     echo json_encode($searchResults);
 } else {
-    $searchResults[] = "Can't query emtpy input!";
+    $searchResults[] = array('url' => '', 'title' => "Can't query empty input!", 'meta_description' => '');
     header('Content-Type: application/json');
     echo json_encode($searchResults);
 }
