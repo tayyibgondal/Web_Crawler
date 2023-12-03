@@ -53,10 +53,10 @@ The primary goal of this project is to create a robust web crawler capable of tr
 
 3. Place the cloned folder under htdocs folder i.e.,
 
-   ````sh
+   ```sh
    C:\xampp\htdocs\ (Windows)
 
-   ````
+   ```
 
 4. Navigate to the project directory.
 
@@ -71,9 +71,8 @@ The primary goal of this project is to create a robust web crawler capable of tr
 7. To create initial database setup, type:
 
    ```sh
-   http://localhost/Web_Crawler/db/db_connector.php
+   http://localhost/Web_Crawler/db/db_setup.php
    ```
-
 
 8. Then, to crawl over Wikipedia and fill the database with Wikipedia's website data, run:
 
@@ -84,13 +83,14 @@ The primary goal of this project is to create a robust web crawler capable of tr
    OR
 
 9. To crawl a specific website of your own choice or to do search over the Web, type the following in browser:
+
    ```sh
    http://localhost/Web_Crawler/
    ```
 
+   **CAUTION:** If the crawling process takes too long, consider increasing the `max_execution_time` variable in the `C:\xampp\php\php.ini` file to prevent any errors.
+
 10. Finally, you can enjoy my application: **The Information Safari**!!!
-
-
 
 ## User Interface
 
