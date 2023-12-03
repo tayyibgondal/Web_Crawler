@@ -3,22 +3,24 @@ body {
     color: #fff;
     font-family: Arial, sans-serif;
     display: flex;
-    flex-direction: column; /* Adjusting flex direction */
+    flex-direction: column;
     align-items: center;
     height: 100vh;
     margin: 0;
     overflow: hidden;
+    box-sizing: border-box;
 }
 
 .container {
-    margin-top: 10%;
-    padding-bottom: 3%;
+    margin-top: 2%;
     width: 80%;
+    height: 90vh;
     padding: 20px;
     background-color: #2d2d2d;
     border-radius: 5px;
     text-align: center;
     max-height: 80vh; /* Limit the height to allow scrolling */
+    overflow-y: hidden; /* Add vertical scrolling if needed */
 }
 
 input[type="text"],
@@ -51,13 +53,14 @@ button:hover {
     margin-top: 20px;
     text-align: left;
     max-height: 60vh; /* Limit the height of search results */
-    overflow: auto; /* Add scrolling to search results */
+    overflow-y: auto; /* Add vertical scrolling if needed */
 }
 
 ul {
     list-style: none;
     padding: 0;
-    margin: 0;
+    margin: 10px 0; /* Adjusted margin */
+    overflow-x: hidden;
 }
 
 ul li {
@@ -68,7 +71,7 @@ ul li {
     background-color: #555;
     padding: 10px;
     border-radius: 5px;
-    color: #fff; /* Adjusted text color */
+    color: #fff;
 }
 
 .search-result h3 {
@@ -80,11 +83,11 @@ ul li {
 }
 
 .search-result a {
-    color: #9bf; /* Changed link color */
+    color: #9bf;
     text-decoration: none;
 }
 
 .search-result a:hover {
     text-decoration: underline;
-    color: #7ff; /* Adjusted link hover color */
+    color: #7ff;
 }
