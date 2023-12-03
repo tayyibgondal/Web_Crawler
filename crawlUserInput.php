@@ -1,5 +1,5 @@
 <?php
-$website_to_crawl = "https://en.wikipedia.org/wiki/Hippopotomonstrosesquipedaliophobia";
+$website_to_crawl = $_POST["data"];
 $crawled = array();
 $queue = array();
 $depth = 0;

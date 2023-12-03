@@ -41,7 +41,7 @@ document.getElementById("myForm").addEventListener("submit", function (event) {
         console.error(error);
       });
   } else if (clickedButton.value == "crawl") {
-    fetch("search.php", {
+    fetch("crawlUserInput.php", {
       method: "POST",
       body: formData,
     })
