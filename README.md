@@ -1,6 +1,6 @@
 # The Information Safari - Web Crawler and Search Engine
 
-The Information Safari is a web crawler and search engine designed to navigate the internet, collecting valuable information and enabling basic search functionalities.
+The Information Safari is a web crawler and search engine designed to navigate the internet for collecting valuable information and enabling basic search functionalities.
 
 ## Overview
 
@@ -20,6 +20,77 @@ The primary goal of this project is to create a robust web crawler capable of tr
 - Javascript
 - PHP
 
+## Main Functions and Concepts Used from Programming Languages
+
+### JavaScript (JS)
+
+- **Fetch API:** Utilized Fetch for making asynchronous requests to the server for handling responses in the web crawler and search functionalities.
+- **FormData:** Employed FormData to handle form data and facilitate sending it seamlessly within Fetch requests.
+
+### PHP
+
+- **DOMDocument and DOMXPath:** Utilized these to parse and navigate HTML content to enable the extraction of specific elements or data from crawled web pages.
+- **cURL:** Utilized cURL for making HTTP requests to web pages, allowing retrieval and handling of webpage content programmatically.
+- **preg_match_all:** Used to perform pattern matching against HTML content, i.e., to extract anchor tags.
+
+## Getting Started
+
+### Prerequisites
+
+- PHP (v.8.3.0 or above)
+- XAMPP Server
+- Any Browser
+
+### Installation
+
+1. Install prerequisites mentioned above.
+
+2. Clone the repository.
+
+   ```sh
+   git clone https://github.com/tayyibgondal/Web_Crawler.git
+   ```
+
+3. Place the cloned folder under htdocs folder i.e.,
+
+   ````sh
+   C:\xampp\htdocs\ (Windows)
+
+   ````
+
+4. Navigate to the project directory.
+
+   ```sh
+   cd C:\xampp\htdocs\Web_Crawler (Windows)
+   ```
+
+5. Run XAMPP server
+
+6. Open a browser.
+
+7. To create initial database setup, type:
+
+   ```sh
+   http://localhost/Web_Crawler/db/db_connector.php
+   ```
+
+
+8. Then, to crawl over Wikipedia and fill the database with Wikipedia's website data, run:
+
+   ```sh
+   http://localhost/Web_Crawler/crawl.php
+   ```
+
+   OR
+
+9. To crawl a specific website of your own choice or to do search over the Web, type the following in browser:
+   ```sh
+   http://localhost/Web_Crawler/
+   ```
+
+10. Finally, you can enjoy my application: **The Information Safari**!!!
+
+
 
 ## User Interface
 
@@ -31,7 +102,7 @@ The primary goal of this project is to create a robust web crawler capable of tr
 
 ![Querying Empty String](images/2_Querying_Empty_String.jpg)
 
-### 3. Searching 
+### 3. Searching
 
 ![Searching](images/3_Searching.jpg)
 

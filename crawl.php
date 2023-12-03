@@ -1,8 +1,8 @@
 <?php
-$website_to_crawl = "https://en.wikipedia.org/wiki/Hippopotomonstrosesquipedaliophobia";
+$website_to_crawl = "https://en.wikipedia.org/wiki/Ice_cream";
 $crawled = array();
 $queue = array();
-$depth = 0;
+$depth = 3;
 $htmls = array(); // Array to store HTML contents with titles
 
 function saveToDatabase($url, $htmlContent)
