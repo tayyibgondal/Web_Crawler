@@ -13,6 +13,11 @@ The primary goal of this project is to create a robust web crawler capable of tr
 - **Search Engine:** Search indexed data for relevant information.
 - **User Interface:** Clean and intuitive interface for easy interaction.
 
+## Ethical Compliance
+
+This web crawler includes functionality to adhere to the guidelines specified in a website's `robots.txt` file. It retrieves the `robots.txt` file from the target domain and parses it to extract the disallowed URLs.
+
+
 ## Technologies Used
 
 - HTML
@@ -88,7 +93,7 @@ The primary goal of this project is to create a robust web crawler capable of tr
    http://localhost/Web_Crawler/
    ```
 
-   **CAUTION:** If the crawling process takes too long, consider increasing the `max_execution_time` variable in the `C:\xampp\php\php.ini` file to prevent any errors.
+   **CAUTION:** If the crawling process takes too long, consider increasing the `max_execution_time` variable in the `C:\xampp\php\php.ini` file to prevent any errors. Also, in case your database server crashes while crawling, consider increasing *max_allowed_packet* value in the MySQL configuration file (my.cnf or my.ini).
 
 10. Finally, you can enjoy my application: **The Information Safari**!!!
 

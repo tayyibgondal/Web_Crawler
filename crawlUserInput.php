@@ -1,14 +1,17 @@
 <?php
+ini_set('max_execution_time', 1000);
+
 $website_to_crawl = $_POST["data"];
 $crawled = array();
 $queue = array();
 $depth = 0;
 $htmls = array(); // Array to store HTML contents with titles
+$disallowed = array(); // Defining $disallowed as a global variable
 
 function saveToDatabase($url, $htmlContent)
 {
     include('db/db_connector.php');
-    echo "$url <br>";
+    // echo "$url <br>";
 
     // Check if the URL already exists in the database
     $stmt = $conn->prepare("SELECT * FROM crawled_urls WHERE url = ?");
@@ -42,7 +45,7 @@ function saveToDatabase($url, $htmlContent)
         // Close connection
         $stmt->close();
     } else {
-        echo "URL already exists in the database: $url<br>";
+        // echo "URL already exists in the database: $url<br>";
     }
 
     $conn->close();
@@ -72,11 +75,35 @@ function retrieveHTMLContent($url)
     if ($contents === false) {
         $error = curl_error($ch);
         // Handle the error accordingly, log or display
-        $contents = "Failed to retrieve content: " . $error;
+        $contents = "empty";
     }
 
     curl_close($ch);
     return $contents;
+}
+
+function getRobotsTxt($domain)
+{
+    $robotsTxt = retrieveHTMLContent($domain . "/robots.txt");
+    if ($robotsTxt != "empty") {
+        $lines = explode("\n", $robotsTxt);
+        foreach ($lines as $line) {
+            if (strpos($line, "Disallow:") === 0) {
+                $disallowed[] = rtrim($domain . substr($line, strlen("Disallow: ")));
+            }
+        }
+    }
+}
+
+function isDisallowed($url)
+{
+    global $disallowed;
+    foreach ($disallowed as $disallowedUrl) {
+        if (strpos($url, $disallowedUrl) === 0) {
+            return true;
+        }
+    }
+    return false;
 }
 
 function get_links_helper($url)
@@ -97,7 +124,8 @@ function get_links_helper($url)
         if (
             !in_array($link, $crawled) &&
             !in_array($link, $queue) &&
-            (strpos($link, 'http://') === 0 || strpos($link, 'https://') === 0)
+            (strpos($link, 'http://') === 0 || strpos($link, 'https://') === 0) &&
+            !isDisallowed($link)
         ) {
             $link = removeApostrophesFromStartEnd($link);
             array_push($crawled, $link); // Mark as crawled
@@ -114,14 +142,15 @@ function get_links_helper($url)
 
 function get_links($website_to_crawl, $depth)
 {
-    global $queue, $crawled;
+    global $queue, $crawled, $disallowed;
     array_push($crawled, $website_to_crawl); // Mark as crawled
-    array_push($queue, $website_to_crawl);  // Say that i'll hunt you URL!
+    array_push($queue, $website_to_crawl); // Say that i'll hunt you URL!
     // Save information regarding crawled link to Database
     $htmlContent = retrieveHTMLContent($website_to_crawl);
     saveToDatabase($website_to_crawl, $htmlContent);
+    getRobotsTxt($website_to_crawl);
 
-    get_links_helper($website_to_crawl);  // Hunt the url
+    get_links_helper($website_to_crawl); // Hunt the url
 
     for ($i = 0; $i < $depth; $i++) {
         foreach ($queue as $link_to_go_after) {

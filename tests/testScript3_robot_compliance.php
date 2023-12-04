@@ -1,9 +1,7 @@
 <?php
-ini_set('max_execution_time', 1000);
+ini_set('max_execution_time', 400);
 
-// $website_to_crawl = "https://www.google.com/";
-// $website_to_crawl = "https://en.wikipedia.org/wiki/Falooda";
-$website_to_crawl = "https://developer.mozilla.org/";
+$website_to_crawl = "https://en.wikipedia.org/";
 $crawled = array();
 $queue = array();
 $depth = 0;
@@ -12,7 +10,7 @@ $disallowed = array(); // Defining $disallowed as a global variable
 
 function saveToDatabase($url, $htmlContent)
 {
-    include('db/db_connector.php');
+    include('testScript4_db_connector.php');
     // echo "$url <br>";
 
     // Check if the URL already exists in the database
@@ -74,11 +72,11 @@ function retrieveHTMLContent($url)
     curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true); // Follow redirects
 
     $contents = curl_exec($ch);
-    if ($contents === false) {
-        $error = curl_error($ch);
-        // Handle the error accordingly, log or display
-        $contents = "empty";
-    }
+    // if ($contents === false) {
+    //     $error = curl_error($ch);
+    //     // Handle the error accordingly, log or display
+    //     $contents = "Failed to retrieve content: " . $error;
+    // }
 
     curl_close($ch);
     return $contents;
@@ -87,7 +85,7 @@ function retrieveHTMLContent($url)
 function getRobotsTxt($domain)
 {
     $robotsTxt = retrieveHTMLContent($domain . "/robots.txt");
-    if ($robotsTxt != "empty") {
+    if ($robotsTxt !== false) {
         $lines = explode("\n", $robotsTxt);
         foreach ($lines as $line) {
             if (strpos($line, "Disallow:") === 0) {
