@@ -4,6 +4,9 @@ ini_set('max_execution_time', 1000);
 // $website_to_crawl = "https://www.google.com/";
 // $website_to_crawl = "https://en.wikipedia.org/wiki/Falooda";
 $website_to_crawl = "https://developer.mozilla.org/";
+// $website_to_crawl = "https://en.wikipedia.org";
+// $website_to_crawl = "https://en.wikipedia.org/wiki/Ice_cream";
+
 $crawled = array();
 $queue = array();
 $depth = 0;

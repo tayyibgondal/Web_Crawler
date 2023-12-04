@@ -91,3 +91,16 @@ ul li {
     text-decoration: underline;
     color: #7ff;
 }
+
+footer {
+    margin-top: 20px;
+    padding-top: 10px;
+    border-top: 1px solid #888; 
+    text-align: center;
+    color: #ccc; 
+    font-size: 14px;
+  }
+  
+  footer p {
+    margin: 0;
+  }

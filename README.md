@@ -8,7 +8,7 @@ The primary goal of this project is to create a robust web crawler capable of tr
 
 ## Features
 
-- **Real-time Web Crawling and Personalized Search:** Users can crawl a website of thier own choice in real-time and update our database. They can then make search for content on the newly crawled website.
+- **Real-time Web Crawling and Personalized Search:** Users can crawl a website of their own choice in real-time and update our database. They can then make search for content on the newly crawled website.
 - **Data Extraction:** Gather titles, meta descriptions, and content.
 - **Search Engine:** Search indexed data for relevant information.
 - **User Interface:** Clean and intuitive interface for easy interaction.
@@ -16,7 +16,6 @@ The primary goal of this project is to create a robust web crawler capable of tr
 ## Ethical Compliance
 
 This web crawler includes functionality to adhere to the guidelines specified in a website's `robots.txt` file. It retrieves the `robots.txt` file from the target domain and parses it to extract the disallowed URLs.
-
 
 ## Technologies Used
 
@@ -79,7 +78,7 @@ This web crawler includes functionality to adhere to the guidelines specified in
    http://localhost/Web_Crawler/db/db_setup.php
    ```
 
-8. Then, to crawl over Wikipedia and fill the database with Wikipedia's website data, run:
+8. Then, to crawl over MDN website by default (you can change it from the code file), run:
 
    ```sh
    http://localhost/Web_Crawler/crawl.php
@@ -93,7 +92,7 @@ This web crawler includes functionality to adhere to the guidelines specified in
    http://localhost/Web_Crawler/
    ```
 
-   **CAUTION:** If the crawling process takes too long, consider increasing the `max_execution_time` variable in the `C:\xampp\php\php.ini` file to prevent any errors. Also, in case your database server crashes while crawling, consider increasing *max_allowed_packet* value in the MySQL configuration file (my.cnf or my.ini).
+   **CAUTION:** If the crawling process takes too long, consider increasing the `max_execution_time` variable in the `C:\xampp\php\php.ini` file to prevent any errors. Also, in case your database server crashes while crawling, consider increasing _max_allowed_packet_ value in the MySQL configuration file (my.cnf or my.ini).
 
 10. Finally, you can enjoy my application: **The Information Safari**!!!
 
