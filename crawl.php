@@ -90,10 +90,17 @@ function retrieveHTMLContent($url)
 function getRobotsTxt($domain)
 {
     $robotsTxt = retrieveHTMLContent($domain . "/robots.txt");
-    if ($robotsTxt != "empty") {
+    if ($robotsTxt !== false) {
         $lines = explode("\n", $robotsTxt);
+        $isUserAgentAllowed = false;
         foreach ($lines as $line) {
-            if (strpos($line, "Disallow:") === 0) {
+            if (strpos($line, "User-agent: *") === 0) {
+                $isUserAgentAllowed = true; // Found the User-agent: * section
+            }
+            elseif (strpos($line, "User-agent:") === 0) {
+                $isUserAgentAllowed = false; // Found some other user agent code
+            }
+            if ($isUserAgentAllowed && strpos($line, "Disallow:") === 0) {
                 $disallowed[] = rtrim($domain . substr($line, strlen("Disallow: ")));
             }
         }
